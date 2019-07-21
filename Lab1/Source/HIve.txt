@@ -1,0 +1,23 @@
+create table hero(id int,name string,gender string,eye_color string,race string,hair_color string,height int,publisher string,skin_color string,alignment string,weight int) row format delimited fields terminated by ',' stored as textfile;
+
+load data local inpath '/home/cloudera/Downloads/heroes_information.csv' into table hero;
+
+1) select name from hero where publisher LIKE 'DC%' LIMIT;
+
+2) select name, CASE WHEN height BETWEEN -100 AND 10 THEN 'average' WHEN height BETWEEN 11 AND 100 THEN 'over_height' WHEN height BETWEEN 200 AND 300 THEN 'tall' ELSE 'Bamboo' END AS name,height from super_hero LIMIT 5;
+
+3) select avg(weight) from hero where eye_color ="yellow";
+
+4) select max(height) from hero;
+
+5) select 'alignment',count(*) from hero where alignment = 'good';
+
+6) select race,count(*) from hero group by race;
+
+7) Select name,hair_color from hero where publisher LIKE "DC%" and hair_color = "Blond";
+
+8) select publisher , count(*) from hero group by publisher;
+
+9) select name,concat(eye_color," ",hair_color) hair_color from super_hero LIMIT 5;
+
+10) select avg(weight) from super_hero where publisher LIKE "DC%";
